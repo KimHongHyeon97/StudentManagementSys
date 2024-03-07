@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <h1>학생등록 </h1>
+
+</head>
+<body>
+    <form class = "registerForm" action="studentSpec.html" th:action th:object="${student}" method="post">
+        <div>
+            <b><label th:text="#{label.student.photo}" for="studentPhoto">학생 이름</label></b>
+            <input class = "registerFormLine" type="text" id="studentPhoto" th:field="*{name}" placeholder="학생 이름을 입력하세요.">
+        </div>
+        <div>
+            <b><label th:text="#{label.student.name}" for="studentName">학생 이름</label></b>
+            <input class = "registerFormLine" type="text" id="studentName" th:field="*{name}" placeholder="학생 이름을 입력하세요.">
+        </div>
+        <div>
+            <b><label th:text="#{label.student.age}" for="age">나이</label></b>
+            <input class = "registerFormLine" type="text" id="age" th:field="*{age}" placeholder="나이를 입력하세요.">
+        </div>
+        <div class = "registerFormLine">
+            <b><label th:text="#{label.student.address}" for="address">주소</label></b>
+            <input class = "registerFormLine" type="text" id="address" th:field="*{address}" placeholder="주소를 입력하세요.">
+        </div>
+        <div class = "registerFormLine">
+            <b><label th:text="#{label.student.phoneNumber}" for="phoneNumber">연락처</label></b>
+            <input class = "registerFormLine" type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="연락처를 입력하세요.">
+        </div>
+        <br>
+        <button class="Button" type="submit">등록</button>
+        <button class = "Button" onclick="location.href='studentList.html'" th:onclick="|location.href='@{/studentList}'|">취소</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+</head>
+<body>
+    <table class="studentListTable">
+        <caption>Student List</caption>
+        <thead style="background:gray">
+            <tr>
+                <th th:text="#{label.student.name}" scope="col"><b>이름</b></th>
+                <th th:text="#{label.student.age}" scope="col">나이</th>
+                <th th:text="#{label.student.address}" scope="col">주소</th>
+                <th th:text="#{label.student.phoneNumber}" scope="col">연락처</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td><a th:href="@{/students/{studentID}(studentID=${student.id})}" th:text="${student.name}">studentName</a></td>
+                <td th:text="${student.age}">나이</td>
+                <td th:text="${student.address}">주소</td>
+                <td th:text="${student.phoneNumber}">연락처</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <button onclick= "location.href='/students/studentSaveForm'" th:onclick = "|location.href='@{/students/studentSaveForm}'|">학생 등록</button>
+    <button onclick= "href='/index'" th:onclick="|location.href='@{/index.html}'|">홈으로</button>
+
+</body>
+</html>
