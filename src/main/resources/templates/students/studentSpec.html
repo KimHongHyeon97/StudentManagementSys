@@ -21,10 +21,31 @@
     </div>
     <div>
         <label th:text="#{label.student.phoneNumber}" for="phoneNumber">연락처</label>
-        <input class = "registerFormLine" type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="역락처를 입력하세요." disabled>
+        <input class = "registerFormLine" type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="연락처를 입력하세요." disabled>
     </div>
-    <br>
-    <a href="/students/studentList">목록으로</a>
+    <div th:each="grade: ${grades}">
+        <label th:for="${#ids.next('grade')}" th:text="${grade.grade_str}"></label>
+        <input type="radio" th:field="*{grade}" th:value="${grade.name()}" disabled>
+    </div>
+    <div class = "registerFormLine">
+        <b><label th:text="#{label.student.latestScore}" for="latestScore">최근 성적</label></b>
+        <input class = "registerFormLine" type="text" id="latestScore" name="latestScore" th:field="${assessment.latestScore}" placeholder="최근 성적을 입력하세요." disabled>
+    </div>
+    <div>
+        <b><label th:text="#{label.student.description}" for="description">평가</label></b>
+            <textarea id="description" th:field="${assessment.description}" placeholder="평가를 입력하세요." disabled></textarea>
+    </div>
+
+    <div>
+        <button name="edit" type="button" th:text="#{menu.editStudent}" id="edit"
+                th:onclick="|location.href='@{/students/{studentId}/studentEditForm(studentId=${student.id})}'|">수정</button>
+    </div>
+    <div>
+        <button name="list" type="button" th:text="#{menu.studentList}" id="list"
+                th:onclick="|location.href='@{/students/studentList}'|">목록</button>
+    </div>
+
 </form>
+
 </body>
 </html>
